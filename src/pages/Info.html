@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+</head>
+
+<style type="text/css">
+  .container {
+    width: 400px;
+    height: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+  }
+
+  #display_image {
+    width: 300px;
+    height: 169px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+  }
+
+
+  .test1 {
+    color: orange;
+    border: none;
+
+    width: 80px;
+    height: 100px;
+
+    padding: 80px;
+    background-image: url("https://cdn.theatlantic.com/thumbor/VCoUZjXa6W3jOoQ9yG4pFlR59LY=/80x43:2688x1999/1200x900/media/img/mt/2015/10/Cygnus_v3_BandW/original.jpg");
+    background-size: 350px;
+
+  }
+
+  .header1 {
+
+    background: none;
+    padding: 5px;
+    width: 400px;
+    height: 110px;
+    text-align: center;
+    position: fixed;
+    right: 300px;
+    /* from right position  */
+    top: 5px;
+    /* from the top  */
+  }
+
+  .paragraph1 {
+    width: 600px;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: none;
+    position: fixed;
+    right: 200px;
+    /* from right position  */
+    top: 70px;
+    /* from the top  */
+  }
+
+  .cart {
+    /* cart style*/
+
+    padding: 10px 15px;
+    /* how far text is from top/bottom then left/right */
+    text-align: center;
+    /* padding overwrites this*/
+    margin: 4px 2px;
+    /* the CSS margin properties are used to create space around elements, outside of any defined borders */
+    cursor: pointer;
+    /* pointer when hovering cursor */
+    position: absolute;
+    /* static relative fixed absolute sticky */
+    right: 30px;
+    /* from left position  */
+    top: 140px;
+    /* from the bottom */
+
+
+  }
+
+  .review {
+
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    left: 270px;
+    /* from left position  */
+    top: 300px;
+    /* from the top  */
+  }
+
+  .reviewbox {
+    width: 300px;
+    height: 150px;
+  }
+
+  .price {
+    border-color: none;
+    border: solid;
+    position: fixed;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    right: 30px;
+    /* from right position  */
+    top: 80px;
+    /* from the top  */
+  }
+
+  .category {
+    text-align: center;
+    border-color: none;
+    border: solid;
+    position: fixed;
+    width: 100px;
+    height: 20px;
+
+    right: 30px;
+    /* from right position  */
+    top: 30px;
+    /* from the top  */
+  }
+</style>
+
+
+
+<body>
+  <div id="display" class="test1">Place holder picture </div>
+
+  <h1 class="header1">Item Title</h1>
+
+  <p class="paragraph1"> This is the description, this is a test to see how the description will look when actually on
+    the info page </p>
+
+  <div class="review">
+    <label for="review">Write a review:</label>
+    <textarea class="reviewbox" type="text" id="review" name="review" required minlength="10"
+      maxlength="500"></textarea>
+    <button id=submit name="review">submit</button>
+  </div>
+
+  <button class="cart" id=cart>Add to cart</button>
+
+
+
+  <div id="category" class="category">Category </div>
+
+  <div id="price" class="price">$00.00 </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
