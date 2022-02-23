@@ -1,9 +1,13 @@
 import InnerHTML from 'dangerously-set-html-content'
+import React from 'react';
 import __html from "./upload.html";
 
 
-const Upload = () => {
-    return <InnerHTML html={__html} />;
+
+class Upload extends React.Component {
+    render() {
+        return <InnerHTML html={__html} />;
+    }
 };
 
 export default Upload;
