@@ -1,0 +1,63 @@
+.title {
+    width: 60%;
+    align-items: center;
+    text-align: center;
+}
+
+.titleBox {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.btn {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.cart {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.itemOuterBox {
+    margin: 20px;
+    background-color: aquamarine;
+}
+
+.item {
+    padding: 5px 5px 5px 5px;
+    margin: 20px;
+    width: 15%;
+    background-color:tomato;
+}
+
+.pageTurn {
+    width: 20%;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.itemBox {
+    width:100%;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+}
