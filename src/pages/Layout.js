@@ -15,6 +15,12 @@ const Layout = () => {
                     <li>
                         <Link to="/info">Info</Link>
                     </li>
+                    <li>
+                        <Link to="/seller">Seller</Link>
+                    </li>
+                    <li>
+                        <Link to="/NoPage">No Page</Link>
+                    </li>
                 </ul>
             </nav>
 

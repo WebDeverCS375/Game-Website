@@ -1,24 +1,26 @@
 import React from 'react'
 import '../css/Item.css'
 
-class Item extends React.Component {
-    render() {
-        return (
-            <div className='Item'>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td id="name">{this.props.name}</td>
-                            <td id="edit"><button className="button">EDIT</button></td>
-                            <td id="delete"><button className="button">DELETE</button></td>
-                            <td id="price">{this.props.price}</td>
+const Item = (props)=>{
+    
+    return (
+        <tr className="Item">
+            <td id="name">{props.name}</td>
+            <td id="price">${parseFloat(props.price).toFixed(2)}</td>
+            <td id="quantity">{parseInt(props.quantity)}</td>
+            <td id="edit"><button className="button">EDIT</button></td>
+            <td id="delete"><button className="button">DELETE</button></td>
 
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+        </tr>
+        
+    )
+    
+}
+
+
+Item.defaultProps = {
+    quantity: 0,
+    price: 0
 }
 
 
