@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useFetch } from "react-async"
 import Item from '../components/Item'
 import ItemContainer from '../components/ItemContainer'
 import '../css/seller.css'
-import '../css/popup.css'
-import Popup from 'reactjs-popup';
 
 let items = [
     {
@@ -85,32 +84,19 @@ let items = [
 
 
 
+
+
 const Seller = () => {
+    
 
     const [containerKey, setContainerKey] = useState(1);
-    const refreshContainer = () => setContainerKey(containerKey + 1);
-
-    function changeItem(id, name, price, quantity) {
-        items[id].name = name
-        items[id].price = price
-        items[id].quantity = quantity
-        refreshContainer()
-
-    }
-
-    function deleteItem(id) {
-        items.splice(id, 1)
-        refreshContainer()
-    }
-
-    function generateItems() {
-        return items.map((item, index) => {
-            return <Item key={index} index={index} name={item.name} price={item.price} quantity={item.quantity} changeHandler={changeItem} deleteHandler={deleteItem} />
-        })
-    }
-
+    const refreshContainer = () =>{
+        setContainerKey(containerKey + 1)
+        
+    };
 
     useEffect(() => {
+        
         // Update the document title using the browser API
         document.getElementById("form").oninput = () => {
             let input = document.getElementById("search");
@@ -149,22 +135,33 @@ const Seller = () => {
         //     console.log(document.getElementById("quantityInput").value)
         // }
 
-
     });
+    
+        // '{"id":"1", "name":"Mario Party","price":"59.99", "quantity": "50"}'
+    
+
+    
+
+    
+
+
+
+    
 
     return (
         <div id="body">
             <h1>Seller</h1>
             <form id="form" onSubmit={(e) => { e.preventDefault() }}>
                 <input type="search" id="search" name="search" placeholder="Search"></input>
-                <button type="reset">&times;</button>
             </form>
 
-            <ItemContainer id="container" key={containerKey}>
-                {
-                    generateItems()
-                }
-
+            <ItemContainer id="container" key={containerKey} refresh={refreshContainer}>
+        
+            {
+                
+            }
+                    
+                
             </ItemContainer>
 
 
@@ -177,6 +174,8 @@ const Seller = () => {
         </div>
 
     )
+
+    
 
 }
 

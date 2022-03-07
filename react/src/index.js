@@ -20,13 +20,21 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="upload" element={<Upload />} />
-          <Route path="info" element={<Info />} />
+          <Route path="info/*" element={<InfoParent />} />
           <Route path="seller" element={<Seller />} />+
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
+}
+
+function InfoParent(props){
+    return (
+    <Routes>
+      <Route path='/:id' element={<Info />} />
+    </Routes>
+    )
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));

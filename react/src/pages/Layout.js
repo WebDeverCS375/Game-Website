@@ -1,5 +1,9 @@
-import { Outlet, Link } from "react-router-dom";
-import './Layout.css'
+import React from "react";
+import {
+    Link,
+    Outlet
+} from "react-router-dom";
+import '../css/Layout.css'
 
 const Layout = () => {
     return (
@@ -22,6 +26,7 @@ const Layout = () => {
                         <Link to="/NoPage">No Page</Link>
                     </li>
                 </ul>
+                
             </nav>
 
             <Outlet />

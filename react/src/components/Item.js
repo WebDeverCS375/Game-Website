@@ -38,7 +38,6 @@ const Item = (props) => {
                                 <button
                                     className="button"
                                     onClick={() => {
-                                        console.log('modal closed ');
                                         close();
                                     }}
                                 >
