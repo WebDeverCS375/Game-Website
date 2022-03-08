@@ -5,11 +5,21 @@ const app = express();
 const port = 3000;
 const hostname = "localhost";
 
-app.use(express.static("public"));
+app.use(express.json());
+
+
+app.get("/upload",function(req,res)
+{
+	let review = req.body.review;
+
+
+	res.json();
+});
 
 
 app.post("/Info",function(req,res)
 {
+  /* multiple reviews..not needed
    let body = req.body;
     if (
         
@@ -19,7 +29,7 @@ app.post("/Info",function(req,res)
     ) {
         return res.sendStatus(400);
     }
-    return res.redirect('/home'); //not sure where the data is supposed to be sent so I just used home as a placeholder
+   */
 });
 
 
