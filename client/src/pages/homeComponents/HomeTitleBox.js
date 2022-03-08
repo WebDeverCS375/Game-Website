@@ -4,14 +4,14 @@ import HomeAccountActionBox from './HomeAccountActionBox'
 import HomeSearchBox from './HomeSearchBox'
 import './home.css'
 
-const HomeTitleBox = () => {
+const HomeTitleBox = ({setItems}) => {
   return (
     <div>
         <div className='titleBox'>
         <HomeTitle />
         <HomeAccountActionBox />
         </div>
-        <HomeSearchBox />
+        <HomeSearchBox setItems={setItems}/>
     </div>
   )
 }
