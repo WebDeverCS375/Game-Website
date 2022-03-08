@@ -14,8 +14,6 @@ const HomeSearchBox = ({setItems}) => {
         { value: 'B', label: 'Physical Card' }
       ];
 
-    const [lastIndex, setLastIndex] = useState(0);
-
     const search = () => {
         axios.get('http://localhost:3001/searchmerch', {
             params: {

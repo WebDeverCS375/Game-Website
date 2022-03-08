@@ -2,13 +2,40 @@ import React from 'react'
 import "./home.css"
 import HomeItemCollection from './HomeItemCollection'
 
-const HomeItemTable = ({ items , page , setPage}) => {  
+const HomeItemTable = ({ items , page , setPage, getItems, lastMes, setLastMes}) => {
+  const maxDisplay = 2;
+  const previ = () => {
+    if (page !== 1) {
+      const newStart = lastMes.start - maxDisplay;
+      getItems(lastMes.mes, newStart);
+      setPage(page - 1);
+      setLastMes({
+        mes : lastMes.mes,
+        start : newStart,
+        end : lastMes.end
+      });
+    }
+  };
+
+  const next = () => {
+    if (items.length === maxDisplay) {
+      const newStart = lastMes.start + maxDisplay;
+      getItems(lastMes.mes, newStart);
+      setPage(page + 1);
+      setLastMes({
+        mes : lastMes.mes,
+        start : newStart,
+        end : lastMes.end
+      });
+    }
+  };
+
   return (
     <div className='itemOuterBox'>
         <HomeItemCollection items={items}/>
-        <button className='pageTurn' onClick={() => page === 1 ? 0 :setPage(page - 1)}>Previous Page</button>
+        <button className='pageTurn' onClick={previ}>Previous Page</button>
         {page}
-        <button className='pageTurn' onClick={() => setPage(page + 1)}>Next Page</button>
+        <button className='pageTurn' onClick={next}>Next Page</button>
     </div>
   )
 }
