@@ -13,10 +13,10 @@ app.use(express.json());
 
 app.get("/upload",function(req,res)
 {
-	let title = req.body.title;
+  let title = req.body.title;
 	let description = req.body.description;
 	let price = req.body.price;
-	let category = req.body.category;
+	let category = req.body.category;	
 	
 
 	
