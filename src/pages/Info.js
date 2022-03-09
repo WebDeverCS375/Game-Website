@@ -8,7 +8,7 @@ const hostname = "localhost";
 app.use(express.json());
 
 
-app.get("/upload",function(req,res)
+app.get("/Info",function(req,res)
 {
 	let review = req.body.review;
 
@@ -17,19 +17,14 @@ app.get("/upload",function(req,res)
 });
 
 
-app.post("/Info",function(req,res)
+app.post("/Info",function(req,res) //update the following values, not sure if its fine to handle in html file in script tag or not
 {
-  /* multiple reviews..not needed
-   let body = req.body;
-    if (
-        
-        !body.hasOwnProperty("review") ||
-      body.review=== "" 
-        
-    ) {
-        return res.sendStatus(400);
-    }
-   */
+  let title = req.body.title;
+	let description = req.body.description;
+	let price = req.body.price;
+	let category = req.body.category;
+
+  
 });
 
 
