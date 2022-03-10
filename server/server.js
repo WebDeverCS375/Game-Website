@@ -19,7 +19,7 @@ db.connect((err) =>  {
     }
 });
 
-const maxDisplay = 2;
+const maxDisplay = 1;
 
 const getData = async (req, res, mes, params) => {
     db.query(mes,
@@ -46,21 +46,22 @@ app.get("/merchdisplay", (req, res) => {
 app.get("/searchmerch", (req, res) => {
     const name = req.query.name;
     const category = req.query.category;
-    var searchString = `SELECT * FROM merchandise WHERE name = ? and category = ? LIMIT ${maxDisplay}`;
-    var searchValue = [name, category];
+    const start = req.query.start;
+    var searchString = `SELECT * FROM merchandise WHERE name = ? and category = ? and id >= ? LIMIT ${maxDisplay}`;
+    var searchValue = [name, category, start];
     if (name === '') {
-        searchString = `SELECT * FROM merchandise WHERE category = ? LIMIT ${maxDisplay}`;
-        searchValue = [category];
+        searchString = `SELECT * FROM merchandise WHERE category = ? and id >= ? LIMIT ${maxDisplay}`;
+        searchValue = [category, start];
     }
     
     if (category === '') {
-        searchString = `SELECT * FROM merchandise WHERE name = ? LIMIT ${maxDisplay}`;
-        searchValue = [name];
+        searchString = `SELECT * FROM merchandise WHERE name = ? and id >= ? LIMIT ${maxDisplay}`;
+        searchValue = [name, start];
     }
 
     if (name === '' && category === '') {
-        searchString = `SELECT * FROM merchandise LIMIT ${maxDisplay}`;
-        searchValue = [];
+        searchString = `SELECT * FROM merchandise WHERE id >= ? LIMIT ${maxDisplay}`;
+        searchValue = [start];
     }
 
     getData(req, res, searchString, searchValue);

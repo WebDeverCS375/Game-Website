@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { FaSearch } from "react-icons/fa"
 import axios from "axios";
 
-const HomeSearchBox = ({setItems}) => {
+const HomeSearchBox = ({setItems, setLastMes}) => {
     const [text, setText] = useState('')
     const [filterValue, setFilterValue] = useState('');
     const options = [
@@ -18,10 +18,23 @@ const HomeSearchBox = ({setItems}) => {
         axios.get('http://localhost:3001/searchmerch', {
             params: {
             name : text,
-            category : filterValue
+            category : filterValue,
+            start : 1
             }
         }).then((response) => {
             setItems(response.data);
+            setLastMes(
+                {
+                  mes : 'http://localhost:3001/searchmerch',
+                  prevStarts : [],
+                  start : 1,
+                  end : response.data[response.data.length - 1].id,
+                  para : {
+                    name : text,
+                    category : filterValue
+                  }
+                }
+            );
         });
     }
 
