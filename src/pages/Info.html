@@ -181,11 +181,33 @@ img {
 
     <div id = "price" class = "price" >$00.00 </div>
 
-
+    <div id ="review" class = "review"></div>
 
 <script>
 
-let ReviewInput = document.getElementById("review");
+
+let reviews = document.getElementById("review");
+let ReviewInput = document.getElementById("submit");
+
+ReviewInput.addEventListener("click", function()
+{
+  let review = {
+    review: reviews.value,
+  }
+  fetch("/Info", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(review),
+	}).then(function (response) {
+		console.log(response.status);
+	}).catch(function (error) {
+		console.log(error);
+	});
+
+
+});
 
 
 let button = document.getElementById("submit");
@@ -210,9 +232,6 @@ button.addEventListener("click", function() {
 });
 
 </script>
-
-
-
 
     <script src="Info.js"></script>
   </body>

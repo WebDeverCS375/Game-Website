@@ -8,27 +8,24 @@ const hostname = "localhost";
 app.use(express.json());
 
 
-app.get("/Info",function(req,res)
+app.get("/",function(req,res)
 {
-	let review = req.body.review;
-
-
-	res.json();
+	res.sendFile('./info.html', { root: __dirname });
+  /*
+  image = req.body.picture; 
+  document.querySelector("#display_image").style.backgroundImage = `url(${image})`;
+  document.getElementById("title").textContent = req.body.title;
+  document.getElementById("description").textContent = req.body.description;
+  document.getElementById("price").textContent = req.body.price;
+  document.getElementById("category").textContent = req.body.category;
+  */  
 });
 
-
-app.post("/Info",function(req,res) //update the following values, not sure if its fine to handle in html file in script tag or not
+app.post('/Info', function(res,req)
 {
-  let title = req.body.title;
-	let description = req.body.description;
-	let price = req.body.price;
-	let category = req.body.category;
+	
 
-  
 });
-
-
-
 
 app.listen(port, hostname, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
