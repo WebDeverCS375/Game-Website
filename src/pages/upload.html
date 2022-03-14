@@ -29,8 +29,8 @@
   
 .display_image{
 
-   width: 600px;
-   height: 800px;
+   width: 500px;
+   height: 700px;
    border: 1px solid black;
    
    background-position: center;
@@ -73,16 +73,16 @@ top: 3%;
 
 .descriptionbox{
   border: 2px groove black;
-  width: 601px;
-  height: 400px;
+  width: 500px;
+  height: 300px;
   font-size: 20px;
 }
 
 .wordc{
   font-size: 20px;
-  position: fixed;
-  left: 72%;
-  top: 69%;
+  position:absolute;
+  bottom:10px;
+  right:15px;
 }
 
 .price{
@@ -183,16 +183,16 @@ top: 3%;
 </div>
 <div class ="title">
   <label for="title">Title:</label>
-  <input  class  = "titleinput" type="text" id="title" name="uploadTitle" required minlength="4" maxlength="16" size="16" placeholder="Enter Title..." ></input>
+  <input  class  = "titleinput" type="text" id="title" name="uploadTitle" required minlength="4" maxlength="16" size="16" placeholder="Max character length is 16..." ></input>
 </div>
 
 <div class ="description">
   <label  for="description">Description:</label>
   <textarea  id="description1" class ="descriptionbox"   name="uploadDescription" placeholder="Enter description of item..." ></textarea>
-  
+  <div class = "wordc" id="wordcount">0</div>
 </div>
 
-<div class = "wordc" id="wordcount">0</div>
+
 
 <div class ="price">
   <label for="price">Price:</label>
@@ -268,21 +268,21 @@ button.addEventListener("click", function() {
   {
     errorbox.textContent = "";
   }
-    
-
 
   let uploaditem = {  //create upload item 
-		picture: FileInput.value,
+		//picture: FileInput.value, not sure how to upload picture
 		title: TitleInput.value,
     description:  DescriptionInput.value,
     price: parseFloat(PriceInput.value),
     category: Category.value,
 	}
+  console.log(uploaditem);
 	fetch("/upload", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
+    body: json.stringify(uploaditem),
 	}).then(function (response) {
 		console.log(response.status);
 	}).catch(function (error) {
