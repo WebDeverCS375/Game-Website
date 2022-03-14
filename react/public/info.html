@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<style type="text/css">
+    .container {
+        width: 400px;
+        height: 225px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid black;
+    }
+
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        height: auto;
+        width: 500px;
+    }
+
+    .displayimage {
+
+        position: fixed;
+        left: 2%;
+        top: 3%;
+
+
+        color: orange;
+        border: none;
+
+        width: auto;
+        height: auto;
+
+
+
+    }
+
+    .title {
+
+        background: none;
+        padding: 5px;
+        width: 400px;
+        height: 110px;
+        text-align: center;
+        position: fixed;
+        left: 45%;
+        top: 3%;
+
+    }
+
+    .description {
+        width: 450px;
+        height: 100px;
+        text-align: center;
+        padding: 25px;
+        box-sizing: border-box;
+        background-color: none;
+
+        border: solid;
+
+        position: fixed;
+        left: 45%;
+        top: 20%;
+
+        padding: 10px;
+    }
+
+
+
+    .review {
+
+
+        width: 450px;
+        height: 150px;
+
+        position: fixed;
+        left: 45%;
+        top: 37%;
+        padding: 10px;
+    }
+
+    .review_sub {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviewbox {
+        width: 450px;
+        height: 150px;
+    }
+
+
+    .category {
+        text-align: center;
+        border-color: none;
+        border: solid;
+        position: fixed;
+        width: 100px;
+        height: 20px;
+
+
+        padding: 10px;
+        position: fixed;
+
+        right: 2%;
+        top: 5%;
+    }
+
+
+    .price {
+        text-align: center;
+        border-color: none;
+        border: solid;
+        position: fixed;
+        width: 100px;
+        height: 20px;
+
+        padding: 10px;
+        position: fixed;
+        right: 2%;
+        top: 15%;
+    }
+
+
+
+
+
+    .cart {
+        /* cart style*/
+
+
+        text-align: center;
+        /* padding overwrites this*/
+        margin: 4px 2px;
+        /* the CSS margin properties are used to create space around elements, outside of any defined borders */
+        cursor: pointer;
+        /* pointer when hovering cursor */
+
+        padding: 10px;
+        position: fixed;
+        right: 2%;
+        top: 25%;
+
+
+    }
+</style>
+
+
+
+<body>
+    <div id="display" class="displayimage">
+        <img id="DisImage" src="https://i.pinimg.com/originals/61/54/18/61541805b3069740ecd60d483741e5bb.jpg"
+            alt="placeholder image" />
+    </div>
+
+    <h1 class="title">Item Title</h1>
+
+    <p class="description"> Description box</p>
+
+    <div class="review">
+        <div class="review_sub">
+            <label for="review">Write a review:</label>
+            <textarea class="reviewbox" type="text" id="review" name="review" required minlength="10"
+                maxlength="500"></textarea>
+
+        </div>
+        <button id=submit name="review">Submit</button>
+    </div>
+
+    <button class="cart" id=cart>Add to cart</button>
+
+
+
+    <div id="category" class="category">Category </div>
+
+    <div id="price" class="price">$00.00 </div>
+
+    <div id="review" class="review"></div>
+
+    <script>
+
+
+        let reviews = document.getElementById("review");
+        let ReviewInput = document.getElementById("submit");
+
+        ReviewInput.addEventListener("click", function () {
+            let review = {
+                review: reviews.value,
+            }
+            fetch("/Info", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(review),
+            }).then(function (response) {
+                console.log(response.status);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+
+        });
+
+
+        let button = document.getElementById("submit");
+
+        button.addEventListener("click", function () {
+            let ReviewItem = {  //create review item 
+                picture: ReviewInput,
+            }
+            console.log(ReviewItem);
+
+            fetch("/Info", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (response) {
+                console.log(response.status);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+        });
+
+    </script>
+
+    <script src="Info.js"></script>
+</body>
+
+</html>

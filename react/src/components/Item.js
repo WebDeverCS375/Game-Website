@@ -5,10 +5,15 @@ import '../css/popup.css'
 
 const Item = (props) => {
 
-
+    let imgStyle = {
+        width: '100px',
+        maxHeight: '100px'
+    }
 
     return (
         <tr className="Item">
+            <td id="image"><img style={imgStyle} src={props.img} alt={props.name}></img></td>
+
             <td id="name">{props.name}</td>
             <td id="price">${parseFloat(props.price).toFixed(2)}</td>
             <td id="quantity">{parseInt(props.quantity)}</td>
@@ -31,6 +36,7 @@ const Item = (props) => {
                                         <div><label className="editLabel">Price: </label><input id="priceInput" className="editInput" type="text" defaultValue={props.price}></input></div>
 
                                         <div><label className="editLabel">Quantity: </label><input id="quantityInput" className="editInput" type="text" defaultValue={props.quantity}></input></div>
+                                        <input type="file" accept="image/png, image/jpeg" />
                                     </form>
                                 </span>
                             </div>
@@ -51,7 +57,7 @@ const Item = (props) => {
                                         let price = document.getElementById("priceInput").value
                                         let quantity = document.getElementById("quantityInput").value
 
-                                        props.changeHandler(props.index, name, price, quantity)
+                                        props.changeHandler(name, price, quantity)
 
                                         close();
                                     }}
@@ -81,7 +87,7 @@ const Item = (props) => {
                                 <button
                                     className="button"
                                     onClick={() => {
-                                        props.deleteHandler(props.index)
+                                        props.deleteHandler()
 
                                         close();
                                     }}

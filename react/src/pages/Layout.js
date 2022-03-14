@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+// Components
+
 import {
     Link,
     Outlet
 } from "react-router-dom";
 import '../css/Layout.css'
 
+
+
+
 const Layout = () => {
+
+
     return (
         <>
             <nav>
@@ -26,7 +34,11 @@ const Layout = () => {
                         <Link to="/NoPage">No Page</Link>
                     </li>
                 </ul>
-                
+
+
+
+
+
             </nav>
 
             <Outlet />

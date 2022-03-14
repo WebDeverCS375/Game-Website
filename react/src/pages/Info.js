@@ -1,15 +1,43 @@
 import React from "react";
-import __html from "./Info.html";
+import axios from 'axios'
+import {
+    useQuery,
+} from "react-query"
 import { useParams } from "react-router-dom";
-var template = { __html: __html };
 
-const Info = (props)=>{
+async function fetchItemById(id) {
+    const response = await axios.get(`http://localhost:3001/item/${id}`)
+    return response.data
+
+
+
+}
+
+
+const Info = (props) => {
+
+
+
 
     let { id } = useParams();
 
-    return <p>{id}</p>
+    const { data, status } = useQuery(['items', id], () => {
+        return fetchItemById(id)
+    })
 
-    // return <div dangerouslySetInnerHTML={template} />;
+
+    if (status === 'loading') {
+        return <p>Loading...</p>
+    }
+    if (status === 'error') {
+        return <p>Error!</p>
+    }
+
+    console.log(data)
+
+    return <p>{ }</p>
+
+
 }
 
 
