@@ -30,20 +30,34 @@
 .display_image{
 
    width: 600px;
-   height: 400px;
+   height: 800px;
    border: 1px solid black;
+   
    background-position: center;
+
    background-size: cover;
+   background-image: url("https://i.pinimg.com/originals/61/54/18/61541805b3069740ecd60d483741e5bb.jpg");
 }
 
-.title{
+body{
+  background: rgb(109, 112, 112);
+}
 
+.title{ /*Title text */
+font-size: 25px;
 position: fixed;
-left: 45%;
+left: 40%;
 top: 3%;
 
-padding: 10px;
 
+}
+
+.titleinput{
+  border: 2px groove black;
+  width: 300px;
+  height: 25px;
+  padding: 10px;
+  font-size: 20px;
 }
 
 .description{
@@ -51,19 +65,29 @@ padding: 10px;
   display:flex;
   flex-direction:column;
   position: fixed;
-  left: 45%;
+  left: 40%;
   top: 20%;
-  
+  font-size: 25px;
   padding: 10px;
 }
 
 .descriptionbox{
-  width: 450px;
-  height: 200px;
+  border: 2px groove black;
+  width: 601px;
+  height: 400px;
+  font-size: 20px;
 }
 
+.wordc{
+  font-size: 20px;
+  position: fixed;
+  left: 72%;
+  top: 69%;
+}
 
 .price{
+  
+  font-size: 25px;
   padding: 10px;
   position: fixed;
   right: 2%;
@@ -71,32 +95,55 @@ padding: 10px;
 }
 
 
+.priceinput{
+  border: 2px groove black;
+  width: 100px;
+  height: 25px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.error{
+  font-size: 20px;
+  padding: 10px;
+  position: fixed;
+  right: 5%;
+  top: 13%;
+  color: red;
+}
 
 .cat {
+  
   width: 150px;
   height: 75px;
-  background-color: #3498DB;
+  background-color: #2b7db4;
   color: white;
   padding: 16px;
   font-size: 16px;
-  border: none;
+  border: 2px groove black;
   cursor: pointer;
 }
 
 .cat:hover, .cat:focus {
-  background-color: #2980B9;
+  background-color: #1f608b;
 }
+
+.catlabel{
+  font-size: 25px;
+  
+}
+
 
 .category {
   position: fixed;
   right: 2%;
-  top: 15%;
+  top: 25%;
 }
 
 .category-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: rgb(241, 13, 13);
   min-width: 160px;
   overflow: auto; 
 }
@@ -107,19 +154,19 @@ padding: 10px;
 .submit{
   width: 150px;
   height: 75px;
-  background-color: #3498DB;
+  background-color: #2b7db4;
   color: white;
   padding: 16px;
   font-size: 16px;
-  border: none;
+  border: 2px groove black;
   cursor: pointer;
   position: fixed;
   right: 2%;
   bottom: 15%;
 }
 
-  .submit:hover, .cat:focus {
-  background-color: #2980B9;
+  .submit:hover, .submit:focus {
+  background-color: #1f608b;
 }
 
 
@@ -131,37 +178,73 @@ padding: 10px;
 <div class = "display_image_pos">
 <input type="file" id ="image_input" name="uploadImage" accept="image/png,image/jpg">
 
-<div class = "display_image" id="display_image"> </div>
+<div class = "display_image" id="display_image" > </div>
 
 </div>
 <div class ="title">
   <label for="title">Title:</label>
-  <input  type="text" id="title" name="uploadTitle" required minlength="4" maxlength="8" size="16" ></input>
+  <input  class  = "titleinput" type="text" id="title" name="uploadTitle" required minlength="4" maxlength="16" size="16" placeholder="Enter Title..." ></input>
 </div>
 
 <div class ="description">
   <label  for="description">Description:</label>
-  <textarea class ="descriptionbox"  type="text" id="description" name="uploadDescription" required minlength="10" maxlength="500" ></textarea>
+  <textarea  id="description1" class ="descriptionbox"   name="uploadDescription" placeholder="Enter description of item..." ></textarea>
+  
 </div>
+
+<div class = "wordc" id="wordcount">0</div>
 
 <div class ="price">
   <label for="price">Price:</label>
-  <input  type="text" id="price" name="uploadPrice" required minlength="5" maxlength="5" size="10"></input>
+  <input  class = "priceinput" type="text" id="price" name="uploadPrice" required minlength="5" maxlength="9" size="10" placeholder="10.99"></input>
+  
 </div>
 
+<div class = "error" id = "errorbox"></div>
+
 <div class="category">
+  <label class = "catlabel">Category:</label>
 	<select class = "cat" id="category" name="uploadCategory">
-		<option value="">Category</option>
-		<option value="cat1">Category1</option>
-		<option value="cat2">Category2</option>
-		<option value="cat3">Category3</option>
-		<option value="cat4">Category4</option>
+		<option  value="Furniture">Furniture</option>
+		<option value="Clothing">Clothing</option>
+		<option value="Video Game">Video Game</option>
+		<option value="Hardware">Hardware</option>
+		<option value="Books">Books</option>
 	</select>
 </div>
 
 <button class = "submit" id = submit name= "submit">Submit</button>
 
+
+ 
+
+
 <script>
+
+
+document.querySelector("#description1").addEventListener("input", function countWord() // source https://www.geeksforgeeks.org/how-to-make-a-word-count-in-textarea-using-javascript/
+{
+    let res = [];
+    let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+    str.map((s) => 
+    {
+      let trimStr = s.trim();
+      if (trimStr.length > 0)
+      {
+          res.push(trimStr);
+      }
+    });
+          document.querySelector("#wordcount").innerText = res.length;
+});
+
+
+
+
+
+
+
+
+
 let FileInput = document.getElementById("image_input");
 let TitleInput = document.getElementById("title");
 let DescriptionInput = document.getElementById("description");
@@ -171,15 +254,30 @@ let CategoryInput = document.getElementById("category");
 let button = document.getElementById("submit");
 
 button.addEventListener("click", function() {
-    let uploaditem = {  //create upload item 
+    
+	console.log(uploaditem);
+
+  //check if price is a float
+ 
+  if (Number.isNaN(parseFloat(PriceInput)))
+  {
+    errorbox.textContent = "Not a valid Price";
+    return;
+  } 
+  else
+  {
+    errorbox.textContent = "";
+  }
+    
+
+
+  let uploaditem = {  //create upload item 
 		picture: FileInput.value,
 		title: TitleInput.value,
     description:  DescriptionInput.value,
     price: parseFloat(PriceInput.value),
     category: Category.value,
 	}
-	console.log(uploaditem);
-
 	fetch("/upload", {
 		method: "POST",
 		headers: {
