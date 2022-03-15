@@ -3,15 +3,16 @@ import HomeTitle from './HomeTitle'
 import HomeAccountActionBox from './HomeAccountActionBox'
 import HomeSearchBox from './HomeSearchBox'
 import './home.css'
+import Modal from './Modal'
 
-const HomeTitleBox = ({setItems, setLastMes}) => {
+const HomeTitleBox = ({setItems, setLastMes , setModal, modal}) => {
   return (
     <div>
         <div className='titleBox'>
         <HomeTitle />
-        <HomeAccountActionBox />
+        <HomeAccountActionBox setModal={setModal}/>
         </div>
-        <HomeSearchBox setItems={setItems} setLastMes={setLastMes}/>
+        {!modal && <HomeSearchBox setItems={setItems} setLastMes={setLastMes}/>}
     </div>
   )
 }

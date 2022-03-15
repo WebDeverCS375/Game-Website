@@ -10,8 +10,10 @@ const HomeSearchBox = ({setItems, setLastMes}) => {
     const [filterValue, setFilterValue] = useState('');
     const options = [
         { value: '', label: 'None' },
-        { value: 'A', label: 'Digital' },
-        { value: 'B', label: 'Physical Card' }
+        { value: 'Adventure', label: 'Adventure' },
+        { value: 'Party', label: 'Physical Party' },
+        { value: 'Action', label: 'Action' },
+        { value: 'Puzzle', label: 'Puzzle' }
       ];
 
     const search = () => {

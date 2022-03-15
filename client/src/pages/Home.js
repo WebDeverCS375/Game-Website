@@ -1,11 +1,12 @@
 import HomeTitleBox from "./homeComponents/HomeTitleBox";
 import HomeItemCollection from './homeComponents/HomeItemCollection';
+import Modal from "./homeComponents/Modal";
 import { useState, useEffect } from 'react'
 import axios from "axios";
-import { components } from "react-select";
 
 function Home() {
-  const maxDisplay = 1;
+  const maxDisplay = 10;
+  const [modal, setModal] = useState(false);
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [lastMes, setLastMes] = useState({
@@ -19,7 +20,6 @@ function Home() {
   });
 
   const getItems = (mes, par) => {
-    console.log(lastMes);
     axios.get(mes, {
       params: par
     }).then((response) => {
@@ -30,7 +30,7 @@ function Home() {
             mes : lastMes.mes,
             prevStarts : lastMes.prevStarts,
             start : lastMes.start,
-            end : response.data[response.data.length - 1].id,
+            end : response.data[response.data.length - 1].product_id,
             para : lastMes.para,
           }
         );
@@ -43,6 +43,7 @@ function Home() {
   useEffect(() => {
     getItems(lastMes.mes, lastMes.para);
   },[page]);
+
 
   const previ = () => {
     const newStart = lastMes.prevStarts.pop();
@@ -95,7 +96,8 @@ function Home() {
 
   return (
     <div>
-      <HomeTitleBox setItems={setItems} setLastMes={setLastMes}/>
+      {modal && <Modal setModal={setModal} />}
+      <HomeTitleBox setItems={setItems} setLastMes={setLastMes} setModal={setModal} modal={modal}/>
       <div className='itemOuterBox'>
       <HomeItemCollection items={items}/>
         <button className='pageTurn' onClick={previ}>Previous Page</button>
