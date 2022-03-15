@@ -73,9 +73,9 @@ app.get("/searchmerch", (req, res) => {
 });
 
 app.get("/merchinfor", (req, res) => {
-    const id = [req.body.id];
-    const mes = "SELECT * FROM merch WHERE product_id = ?"
-    getData(req, res, mes, id);
+    const par = [req.query.id];
+    const mes = "SELECT * FROM merch WHERE product_id = ?";
+    getData(req, res, mes, par);
 });
 
 app.post("/user", function (req, res) {
@@ -138,6 +138,10 @@ app.post("/auth", function (req, res) {
     });
 });
 
+app.get('/all', (req, res)=>{
+    const mes = 'SELECT * FROM merch'
+    getData(req, res, mes)
+})
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");

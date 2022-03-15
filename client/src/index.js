@@ -89,7 +89,7 @@ export function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="upload" element={<Upload />} />
-            <Route path="info/*" element={<InfoParent />} />
+            <Route path="info/*" element={<InfoParent addToCart={(clicked)=>handleAddToCart(clicked)}/>} />
             <Route path="seller" element={<Seller />} />
             <Route path="*" element={<NoPage />} />
           </Route>
@@ -131,7 +131,7 @@ function InfoParent(props) {
             <input type="submit" value="Submit"></input>
           </form>
         } />
-        <Route path='/:id' element={<Info />} />
+        <Route path='/:id' element={<Info addToCart={props.addToCart}/>} />
       </Routes>
 
     </>
