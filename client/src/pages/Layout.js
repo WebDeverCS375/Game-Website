@@ -1,11 +1,23 @@
-import { Outlet, Link } from "react-router-dom";
-import './Layout.css'
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+// Components
+
+import {
+    Link,
+    Outlet
+} from "react-router-dom";
+import '../css/Layout.css'
+
+
+
 
 const Layout = () => {
+
+
     return (
         <>
             <nav>
-                <ul>
+                <ul id="nav">
                     <li>
                         <Link to="/">Home</Link>
                     </li>
@@ -14,6 +26,12 @@ const Layout = () => {
                     </li>
                     <li>
                         <Link to="/info">Info</Link>
+                    </li>
+                    <li>
+                        <Link to="/seller">Seller</Link>
+                    </li>
+                    <li>
+                        <Link to="/NoPage">No Page</Link>
                     </li>
                 </ul>
             </nav>
