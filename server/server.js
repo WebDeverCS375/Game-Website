@@ -36,7 +36,6 @@ const getData = async (req, res, mes, params) => {
             for (element of result) {
                 const image = `http://localhost:3001/images/${element.product_id}.jpeg`;
                 element.image = image;
-                console.log(element);
             }
             res.json(result);
         }
