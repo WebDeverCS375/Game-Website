@@ -1,19 +1,28 @@
-
 table {
-    background:green;
-
     border-radius: 10px;
     border-style: hidden; /* hide standard table (collapsed) border */
     box-shadow: 0 0 0 2px black; /* this draws the table border  */ 
 
     
-    /* border: solid black 2px; */
     border-collapse: collapse;
-    margin: 10px;
+    max-width: 100vw;
+}
 
-    
+@media only screen and (max-width: 768px) {
+    tr{
+        font-size:10px;
+        max-width: 768px;
+        background-color: green;
+    }
+}
 
-    /* max-width:30%; */
+tr{
+    height:7vh;
+    font-size: large;
+}
+
+th{
+    border: solid black 2px;
 }
 
 td{
@@ -24,23 +33,53 @@ td{
 }
 
 #name{
-    min-width: 50px;
+    min-width: 20vw;
+}
+#price{
+    min-width:5vw;
+}
+#quantity{
+    min-width:5vw;
+    text-align: center;
 }
 
+#edit{
+    min-width: 3vw;
+}
+#delete{
+    min-width: 3vw;
+}
 
 .button{
     border: 1px black solid;
     background: none;
-    cursor: pointer
+    cursor: pointer;
+    font-size:medium;
+    
 }
 
 .button:hover{
     background: #dddddd;
 }
-/* 
-.Item{
-    background:green;
-    height:30px;
-    border-radius: 5px;
-} */
 
+table tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+table tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.editLabel{
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+}

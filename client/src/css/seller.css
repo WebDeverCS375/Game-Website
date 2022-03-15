@@ -1,0 +1,52 @@
+@media only screen and (max-width: 768px) {
+    body{  
+    max-width: 768;
+    }
+}
+
+#body{
+    margin: 10px;
+    max-width: 100vw;
+}
+
+
+#search{
+    margin:10px;
+    
+    font-size:medium;
+}
+form {
+    position: relative;
+    width: 200px;
+  }
+  
+  form input {
+    width: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  
+  form input:placeholder-shown+button {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  form button {
+    position: absolute;
+    border: none;
+    display: block;
+    width: 15px;
+    height: 15px;
+    line-height: 16px;
+    font-size: 12px;
+    border-radius: 50%;
+    top: 0;
+    bottom: 0;
+    right: 5px;
+    margin: auto;
+    background: #ddd;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    transition: .1s;
+  }
