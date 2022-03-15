@@ -63,3 +63,35 @@
     font-size: 15px;
     font-family: inherit;
 }
+
+.regiLog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.regLogInput {
+    width: 300px;
+    height: 30px;
+}
+
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: cadetblue;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer {
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }

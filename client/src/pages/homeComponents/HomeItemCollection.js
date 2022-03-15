@@ -6,7 +6,7 @@ const HomeItemCollection = ({ items }) => {
   return (
     <div className='titleBox'>
     {items.map((item) => (
-        <HomeItem item={item} key={item.id}/>
+        <HomeItem item={item} key={item.product_id}/>
       ))}
     </div>
   )

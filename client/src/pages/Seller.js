@@ -14,7 +14,7 @@ const Seller = () => {
             let tr = table.getElementsByTagName("tr");
 
             for (let i = 0; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName("td")[0];
+                let td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     let txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -31,7 +31,7 @@ const Seller = () => {
             let tr = table.getElementsByTagName("tr");
 
             for (let i = 0; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName("td")[0];
+                let td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     tr[i].style.display = "";
                 }
