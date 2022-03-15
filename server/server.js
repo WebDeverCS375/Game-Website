@@ -138,11 +138,14 @@ app.post("/auth", function (req, res) {
     });
 });
 
+<<<<<<< HEAD
 app.get('/all', (req, res)=>{
     const mes = 'SELECT * FROM merch'
     getData(req, res, mes)
 })
 
+=======
+>>>>>>> main
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
