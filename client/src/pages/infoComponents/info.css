@@ -1,0 +1,39 @@
+.imageBox {
+    width: 300px;
+    height: 169px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}
+
+.smallBox {
+    text-align: center;
+    border-color: none;
+    border: solid;
+    width: 100px;
+    height: 40px;
+    margin-top: 1em;
+    margin-left: 1em;
+  }
+
+  .tagsBox {
+    margin-top: 1em;
+    background: gold;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cart {
+    width: 100px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 1em;
+    margin-left: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+}
