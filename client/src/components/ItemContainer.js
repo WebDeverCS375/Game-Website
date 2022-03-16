@@ -62,7 +62,7 @@ const ItemContainer = (props) => {
                     <th id="name">Name</th>
                     <th id="price">Price</th>
                     <th id="genre">Genre</th>
-                    <th id="quantity">Quantity</th>
+                    <th id="Console">Console</th>
                     <th id="edit"></th>
                     <th id="delete"></th>
                 </tr>
@@ -70,7 +70,7 @@ const ItemContainer = (props) => {
             <tbody>
                 {
                     data.map((item, index) => {
-                        return <Item key={index} item={item} changeHandler={(name, price, quantity, genre) => changeMutation.mutate({ gameId: item.id, game_name: name, unit_price: price, quantity: quantity, game_genre:  genre})} deleteHandler={() => deleteMutation.mutate(item.id)} />
+                        return <Item key={index} item={item} changeHandler={(name, price, console, genre) => changeMutation.mutate({ product_id: item.product_id, game_name: name, unit_price: price, game_console: console, game_genre: genre })} deleteHandler={() => deleteMutation.mutate(item.product_id)} />
                     })
 
                 }

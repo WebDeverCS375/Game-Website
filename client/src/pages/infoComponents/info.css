@@ -1,3 +1,7 @@
+#infobody{
+  padding: 10px;
+}
+
 .imageBox {
     width: 200px;
     height: 200px;
@@ -17,6 +21,7 @@
   }
 
   .tagsBox {
+   
     margin-top: 1em;
     background: gold;
     display: flex;

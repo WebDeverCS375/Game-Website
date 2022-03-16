@@ -16,7 +16,7 @@ const Layout = () => {
 
     return (
         <>
-            <nav>
+            <nav className="sticky">
                 <ul id="nav">
                     <li>
                         <Link to="/">Home</Link>
@@ -35,8 +35,10 @@ const Layout = () => {
                     </li>
                 </ul>
             </nav>
+            <div className="pageBody">
+                <Outlet />
+            </div>
 
-            <Outlet />
         </>
     )
 };

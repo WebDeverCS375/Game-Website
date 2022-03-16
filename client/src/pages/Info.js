@@ -5,59 +5,59 @@ import { useState, useEffect } from 'react'
 import { useQuery, useQueryClient, useQueryErrorResetBoundary } from 'react-query'
 import axios from "axios";
 
-function Info( { addToCart }) {
+function Info({ addToCart }) {
 
     const queryClient = useQueryClient()
     const { id } = useParams();
-    const { data, status } = useQuery('merch', async ()=>{
+    const { data, status } = useQuery('merch', async () => {
         return await axios.get('http://localhost:3001/merchinfor', {
             params: {
-            id : id
+                id: id
             }
         });
     })
-    
-    useEffect(() => {
-        if(status != 'loading' && status != 'error'){
-        console.log(data.data[0]);
-            
-        }
-      },[]);
 
-    if(status == 'loading'){
+    useEffect(() => {
+        if (status != 'loading' && status != 'error') {
+            console.log(data.data[0]);
+
+        }
+    }, []);
+
+    if (status == 'loading') {
         return <p>loading</p>
     }
 
-    if(status =='error'){
+    if (status == 'error') {
         return <p>error</p>
     }
-    
-    
-  return (
-    <>
-    <div>
-        <h1>Title</h1>
-        <p>This is the description, this is a test to see how the description will look when actually on the info page.</p>
-        <div className='imageBox'>
-            <img src={data.data[0].image} height={200} width={200} />
-        </div>
 
-        <div className='tagsBox'> 
-            <div className='smallBox'>
-                {data.data[0].game_genre}
+
+    return (
+        <>
+            <div id="infobody">
+                <h1>{data.data[0].game_name}</h1>
+                <p>This is the description, this is a test to see how the description will look when actually on the info page.</p>
+                <div className='imageBox'>
+                    <img src={data.data[0].image} height={200} width={200} />
+                </div>
+
+                <div className='tagsBox'>
+                    <div className='smallBox'>
+                        {data.data[0].game_genre}
+                    </div>
+                    <div className='smallBox'>
+                        ${data.data[0].unit_price}
+                    </div>
+                    <button className='cart' onClick={() => { addToCart(data.data[0]) }}>
+                        Add to Cart
+                    </button>
+                </div>
+
             </div>
-            <div className='smallBox'>
-                ${data.data[0].unit_price}
-            </div>
-            <button className='cart' onClick={() => {addToCart(data.data[0])}}>
-                Add to Cart
-            </button>
-        </div>
-        
-    </div>
-    </>
-  )
-    
+        </>
+    )
+
 }
 
 export default Info

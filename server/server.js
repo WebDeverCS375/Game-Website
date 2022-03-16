@@ -8,15 +8,25 @@ const cors = require("cors");
 const { response } = require("express");
 const e = require("express");
 
+const fs = require('fs')
+
 const saltRounds = 10;
 
 app.use(cors());
 app.use(express.json());
 app.use("/images", express.static("images"));
+var fileUpload = require('express-fileupload');
+
+app.use(fileUpload({
+    safeFileNames: true,
+    preserveExtension: true,
+    limits: { fileSize: 50 * 1024 * 1024 },
+    abortOnLimit: false,
+}));
 
 const db = mysql.createConnection(env);
 
-db.connect((err) =>  {
+db.connect((err) => {
     if (err) {
         console.log(err);
     } else {
@@ -28,18 +38,18 @@ const maxDisplay = 10;
 
 const getData = async (req, res, mes, params) => {
     db.query(mes,
-    params,
-    (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            for (element of result) {
-                const image = `http://localhost:3001/images/${element.product_id}.jpeg`;
-                element.image = image;
+        params,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                for (element of result) {
+                    const image = `http://localhost:3001/images/${element.product_id}.jpeg`;
+                    element.image = image;
+                }
+                res.json(result);
             }
-            res.json(result);
-        }
-    });
+        });
 };
 
 app.get("/merchdisplay", (req, res) => {
@@ -58,7 +68,7 @@ app.get("/searchmerch", (req, res) => {
         searchString = `SELECT * FROM merch WHERE game_genre = ? and product_id >= ? LIMIT ${maxDisplay}`;
         searchValue = [category, start];
     }
-    
+
     if (category === '') {
         searchString = `SELECT * FROM merch WHERE game_name = ? and product_id >= ? LIMIT ${maxDisplay}`;
         searchValue = [name, start];
@@ -114,7 +124,7 @@ app.post("/user", function (req, res) {
             )
         });
     });
-            
+
 });
 
 app.post("/auth", function (req, res) {
@@ -138,9 +148,51 @@ app.post("/auth", function (req, res) {
     });
 });
 
-app.get('/all', (req, res)=>{
+app.get('/all', (req, res) => {
     const mes = 'SELECT * FROM merch'
     getData(req, res, mes)
+})
+
+app.post('/updateItem', (req, res) => {
+    db.query('UPDATE merch SET game_name = ?, unit_price = ?, game_console = ?, game_genre = ? where product_id = ?',
+        [req.body?.game_name, req.body?.unit_price, req.body?.game_console, req.body?.game_genre, req.body?.product_id], (err, result) => {
+            if (err) throw err;
+            console.log(result.affectedRows + " record(s) updated")
+        })
+    res.send()
+})
+
+app.delete('/deleteItem/:id', (req, res) => {
+    let id = req.params.id
+    db.query('DELETE from merch where product_id = ? ', [id], (err, result) => {
+        if (err) throw err;
+        console.log(result.affectedRows + " record(s) deleted")
+    })
+})
+
+
+app.post('/upload', (req, res) => {
+    let id = 0
+    db.query('INSERT into merch(game_name, game_genre, unit_price, game_console, game_seller) values(?, ?, ?, ?, 0)', [req.body?.game_name, req.body?.game_genre.value, req.body?.unit_price, req.body?.game_console.value],
+        async (err, result) => {
+            if (err) throw err;
+
+            res.json(result)
+
+        })
+
+    // res.json({ "id": "blank" })
+
+
+
+
+})
+
+
+app.post('/uploadImage', (req, res) => {
+
+    req.files.file.mv(`./images/${req.body.id}.jpeg`)
+    res.send()
 })
 
 app.listen(3001, () => {

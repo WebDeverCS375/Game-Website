@@ -3,23 +3,38 @@ import '../css/Item.css'
 import Popup from 'reactjs-popup'
 import '../css/popup.css'
 import Select from 'react-select';
+import { FaFileExcel } from 'react-icons/fa';
 
 
-let options = [
-    {value:'Action',label:'Action'},
-    {value:'Adventure', label:'Adventure'},
-    {value:'Party',label:'Party'},
-    {value:'Puzzle',label:'Puzzle'}
+let genreOptions = [
+    { value: 'Action', label: 'Action' },
+    { value: 'Adventure', label: 'Adventure' },
+    { value: 'Party', label: 'Party' },
+    { value: 'Puzzle', label: 'Puzzle' }
+]
+
+let consoleOptions = [
+    { value: 'Nintendo', label: 'Nintendo' },
+    { value: 'Playstation', label: 'Playstation' },
+    { value: 'Xbox', label: 'Xbox' },
 ]
 
 
 const Item = (props) => {
 
-    let selectedGenre = {value:props.item.game_genre, label:props.item.game_genre}
+    let selectedGenre = { value: props.item.game_genre, label: props.item.game_genre }
+    let selectedConsole = { value: props.item.game_console, label: props.item.game_console }
+
 
     let imgStyle = {
-        width: '100px',
-        maxHeight: '100px'
+        width: 'minContent',
+        maxWidth: '100px',
+        maxHeight: '100px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
+
     }
 
     return (
@@ -29,7 +44,6 @@ const Item = (props) => {
             <td id="name">{props.item.game_name}</td>
             <td id="price">${parseFloat(props.item.unit_price).toFixed(2)}</td>
             <td id="genre">{props.item.game_genre}</td>
-            <td id="quantity">{parseInt(props.quantity)}</td>
             <td id="edit">
                 <Popup trigger={<button className="button"> EDIT </button>} modal>
                     {close => (
@@ -48,15 +62,24 @@ const Item = (props) => {
 
                                         <div><label className="editLabel">Price: </label><input id="priceInput" className="editInput" type="text" defaultValue={props.item.unit_price}></input></div>
 
-                                        <div><label className="editLabel">Quantity: </label><input id="quantityInput" className="editInput" type="text" defaultValue={props.quantity}></input></div>
-                                        
+
                                         <div><label className="editLabel">Genre: </label>
                                             <Select
                                                 id="genreSelector"
-                                                value={options.value}
-                                                options={options}
+                                                value={genreOptions.value}
+                                                options={genreOptions}
                                                 defaultValue={selectedGenre}
-                                                onChange={(option)=>selectedGenre=option}
+                                                onChange={(option) => selectedGenre = option}
+                                            ></Select>
+                                        </div>
+
+                                        <div><label className="editLabel">Console: </label>
+                                            <Select
+                                                id="consoleSelector"
+                                                value={consoleOptions.value}
+                                                options={consoleOptions}
+                                                defaultValue={selectedConsole}
+                                                onChange={(option) => selectedConsole = option}
                                             ></Select>
                                         </div>
 
@@ -79,12 +102,12 @@ const Item = (props) => {
                                     onClick={() => {
                                         let name = document.getElementById("nameInput").value
                                         let price = document.getElementById("priceInput").value
-                                        let quantity = document.getElementById("quantityInput").value
                                         let genre = selectedGenre.value
+                                        let console = selectedConsole.value
 
-                                        console.log(name, price, quantity, genre)
+                                        // console.log(name, price, console, genre)
 
-                                        // props.changeHandler(name, price, quantity)
+                                        props.changeHandler(name, price, console, genre)
 
                                         close();
                                     }}
