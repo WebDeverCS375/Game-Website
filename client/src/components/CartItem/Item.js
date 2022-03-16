@@ -5,17 +5,17 @@ import { Wrapper } from './Item.styles'
 const Item = ({ item, addToCart, removeFromCart }) => (
     <Wrapper>
         <div>
-            <h3>{item.name}</h3>
+            <h3>{item.game_name}</h3>
             <div className="information">
-                <p>Price: ${item.price}</p>
-                <p>Total: ${(item.amount * item.price).toFixed(2)}</p>
+                <p>Price: ${item.unit_price}</p>
+                <p>Total: ${(item.amount * item.unit_price).toFixed(2)}</p>
             </div>
             <div className='buttons'>
                 <Button
                     size="small"
                     disableElevation
                     variant="contained"
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.product_id)}
                 >
                     -
                 </Button>

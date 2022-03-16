@@ -7,7 +7,7 @@ const Cart = ({ cartItems, addToCart, removeFromCart }) => {
 
     const calculateTotal = (items) => {
         return items.reduce((ack, item) => {
-            return ack + item.price * item.amount
+            return ack + item.unit_price * item.amount
         }, 0)
     }
 
@@ -18,7 +18,7 @@ const Cart = ({ cartItems, addToCart, removeFromCart }) => {
             {cartItems.length === 0 ? <p>No items in cart.</p> : null}
             {cartItems.map(item => (
                 <Item
-                    key={item.id}
+                    key={item.product_id}
                     item={item}
                     addToCart={addToCart}
                     removeFromCart={removeFromCart}

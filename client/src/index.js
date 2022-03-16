@@ -50,10 +50,10 @@ export function App() {
 
   const handleAddToCart = (clicked) => {
     setCartItems(prev => {
-      const isInCart = prev.find(item => item.id === clicked.id)
+      const isInCart = prev.find(item => item.product_id === clicked.product_id)
       if (isInCart) {
         return prev.map(item => (
-          item.id === clicked.id
+          item.product_id === clicked.product_id
             ? { ...item, amount: item.amount + 1 }
             : item
         ))
@@ -66,7 +66,7 @@ export function App() {
   const handleRemoveFromCart = (id) => {
     setCartItems(prev => (
       prev.reduce((ack, item) => {
-        if (item.id === id) {
+        if (item.product_id === id) {
           if (item.amount === 1) return ack;
           return [...ack, { ...item, amount: item.amount - 1 }]
         } else {
