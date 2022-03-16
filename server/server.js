@@ -91,6 +91,14 @@ app.get("/merchinfor", (req, res) => {
 app.post("/user", function (req, res) {
     let username = req.body.username;
     let plaintextPassword = req.body.plaintextPassword;
+
+    console.log(typeof username !== "string",
+        typeof plaintextPassword !== "string",
+        username.length < 1,
+        username.length > 20,
+        plaintextPassword.length < 5,
+        plaintextPassword.length > 36)
+
     if (
         typeof username !== "string" ||
         typeof plaintextPassword !== "string" ||
@@ -103,6 +111,9 @@ app.post("/user", function (req, res) {
         return res.status(401).send();
     }
 
+
+    console.log("added")
+
     db.query("SELECT seller_name FROM seller WHERE seller_name = ?", [
         username,
     ], (err, userRepeat) => {
@@ -112,7 +123,7 @@ app.post("/user", function (req, res) {
         }
         bcrypt.hash(plaintextPassword, saltRounds).then((hashedPassword) => {
             db.query(
-                "INSERT INTO seller (seller_name, hashed_password, rating, merch_quantity) VALUES (?, ?, ?, ?)",
+                "INSERT INTO seller (seller_name, hashedPassword, rating, merch_quantity) VALUES (?, ?, ?, ?)",
                 [username, hashedPassword, 0, 0], (error, response) => {
                     if (error === null) {
                         res.status(200).send();
@@ -130,15 +141,19 @@ app.post("/user", function (req, res) {
 app.post("/auth", function (req, res) {
     let username = req.body.username;
     let plaintextPassword = req.body.plaintextPassword;
-    db.query("SELECT hashed_password FROM seller WHERE seller_name = ?", [
+    console.log('select')
+    db.query("SELECT hashedPassword FROM seller WHERE seller_name = ?", [
         username,
     ], (err, userRepeat) => {
+        console.log(userRepeat)
         if (userRepeat.length === 0) {
             // username doesn't exist
             return res.status(401).send();
         }
-        let hashedPassword = userRepeat[0].hashed_password;
+        let hashedPassword = userRepeat[0].hashedPassword;
+
         bcrypt.compare(plaintextPassword, hashedPassword, (error, response) => {
+            console.log(response)
             if (response) {
                 res.status(200).send();
             } else {
