@@ -2,7 +2,7 @@ const env = require("./env.json");
 
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const { response } = require("express");
